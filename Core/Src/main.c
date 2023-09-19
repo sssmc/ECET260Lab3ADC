@@ -255,6 +255,12 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+int __io_putchar(int ch)
+{
+	ITM_SendChar(ch);
+	return 0;
+}
+
 /* USER CODE END 4 */
 
 /**
