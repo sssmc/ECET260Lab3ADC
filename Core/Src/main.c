@@ -99,12 +99,21 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	//Start ADC Reading
 	HAL_ADC_Start(&hadc1);
+	//Wait until the ADC is finished, timing out after 100ms if the reading is not done
 	HAL_ADC_PollForConversion(&hadc1, 100);
+	//Get the ADC reading
 	thermADCResult = HAL_ADC_GetValue(&hadc1);
-	printf("ADC Value: %d", thermADCResult);
-	temperature = convertAnalogToTemperature(thermADCResult);
 
+	//Print the Raw value
+	printf("ADC Value: %d\n", thermADCResult);
+	//Convert the raw value to a temperature
+	temperature = convertAnalogToTemperature(thermADCResult);
+	//Print the temperture
+	printf("Temp Value: %.1f C\n", temperature);
+
+	//Slow our loop done a bit
 	HAL_Delay(500);
     /* USER CODE END WHILE */
 
